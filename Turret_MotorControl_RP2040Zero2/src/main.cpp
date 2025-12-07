@@ -1,18 +1,21 @@
 #include <Arduino.h>
 
-// put function declarations here:
-int myFunction(int, int);
+const int TEST_PIN = 2;  // GP2 on the RP2040 Zero
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  pinMode(TEST_PIN, OUTPUT);
+
+  Serial.begin(115200);
+  delay(2000);  // give Serial Monitor time to attach
+  Serial.println("RP2040 Zero: PlatformIO test is running!");
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-}
+  digitalWrite(TEST_PIN, HIGH);
+  Serial.println("Pin 2 HIGH");
+  delay(500);
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+  digitalWrite(TEST_PIN, LOW);
+  Serial.println("Pin 2 LOW");
+  delay(500);
 }
